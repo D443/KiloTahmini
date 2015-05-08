@@ -1,0 +1,638 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frmmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    
+          <Button
+              android:id="@+id/btnkolonoyna"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_toLeftOf="@+id/btnIptal"
+              android:text="@string/btnKolonOyna"
+              android:gravity="center" />
+
+ 		<Button
+ 		    android:id="@+id/btnIptal"
+ 		    android:layout_width="50dp"
+ 		    android:layout_height="wrap_content"
+ 		    android:layout_alignParentRight="true"
+ 		    android:layout_alignParentTop="true"
+ 		    android:text="@string/btnKoloniptal"
+ 		    android:gravity="center_vertical" />
+
+      </RelativeLayout>
+    
+ 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+         android:id="@+id/layoutPickcolumns" 
+         android:layout_marginTop="5dp"
+         android:layout_gravity="center_vertical">
+ 		   
+  
+       
+        
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+         android:id="@+id/layoutseciliNumaralar" 
+          android:layout_marginTop="20dp">
+ 		   
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon1"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon1_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon1"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon1_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon1_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon1_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon1_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon1_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon1_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon1_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon1_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon1_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon1_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+          <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon2"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon2_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon2"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon2_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon2_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon2_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon2_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon2_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon2_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon2_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon2_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon2_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon2_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon3"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon3_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon3"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon3_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon3_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon3_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon3_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon3_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon3_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon3_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon3_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon3_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon3_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon4"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon4_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon4"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon4_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon4_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon4_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon4_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon4_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon4_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon4_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon4_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon4_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon4_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+        
+        
+            <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon5"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon5_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon5"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon5_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon5_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon5_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon5_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon5_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon5_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon5_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon5_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon5_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon5_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+            <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon6"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon6_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon6"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon6_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon6_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon6_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon6_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon6_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon6_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon6_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon6_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon6_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon6_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+            
+                <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon7"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon7_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon7"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon7_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon7_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon7_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon7_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon7_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon7_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon7_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon7_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon7_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon7_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+                    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+           <TextView
+        android:id="@+id/lblkolon8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblkolon8"
+        android:layout_marginLeft="25dp"
+        />
+
+           <TextView
+               android:id="@+id/lblkolon8_rakam1"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon8"
+               android:layout_marginLeft="25dp"
+               android:text="@string/lblrakambos"
+                />
+           
+             <TextView
+               android:id="@+id/lblkolon8_rakam2"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon8_rakam1"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+
+                      <TextView
+               android:id="@+id/lblkolon8_rakam3"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon8_rakam2"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+              />
+                            <TextView
+               android:id="@+id/lblkolon8_rakam4"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon8_rakam3"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                <TextView
+               android:id="@+id/lblkolon8_rakam5"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon8_rakam4"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+                                          <TextView
+               android:id="@+id/lblkolon8_rakam6"
+               android:layout_width="20dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_toRightOf="@+id/lblkolon8_rakam5"
+               android:layout_marginLeft="10dp"
+               android:text="@string/lblrakambos"
+               />
+      </RelativeLayout>
+    
+        
+    </LinearLayout>
+
+   
+                
+          <Button
+              android:id="@+id/btnsonuckontrol"
+              android:layout_width="fill_parent"
+               android:layout_marginTop="2dp"
+              android:text="@string/btnsonuckontrol"
+              android:layout_height="wrap_content"
+              android:gravity="center" />
+          
+                                <TextView
+                                    android:id="@+id/lblcekilisrakamlar"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:gravity="center"
+                                    android:text="@string/lblcekilisrakamlar" />
+                                
+           <Button
+              android:id="@+id/btnYenihafta"
+              android:layout_width="fill_parent"
+              android:layout_marginTop="5dp"
+              android:layout_height="wrap_content"
+              android:text="@string/btnYenihafta"
+              android:gravity="center" />
+ 
+   
+</LinearLayout>
