@@ -1,0 +1,661 @@
+package com.sayisal_loto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.app.Activity;
+import android.graphics.Color;
+
+
+
+
+
+public class MainActivity extends Activity {
+
+TextView t ;
+int id_count=8880;
+
+List<Integer> seciliRakamlar = new ArrayList<Integer>();
+List<List<Integer>> OyananKolonlar = new ArrayList<List<Integer>>();
+
+List<Integer> CekilisRakamlari = new ArrayList<Integer>();
+	 
+void CekilisRakamlariolustur()
+{
+	for (int i = 0; i < 7; i++) {
+		Random r = new Random();
+		int i_=r.nextInt(49-1) + 1;	
+		CekilisRakamlari.add(i_);	
+	}
+}
+
+
+void cekilisRakamlariGoster()
+{
+	TextView txt ;
+	txt =(TextView) findViewById(R.id.lblcekilisrakamlar);
+	for (int i = 0; i < CekilisRakamlari.size()-1; i++) 
+	{	if (i==0)
+		txt.setText(Integer.toString(CekilisRakamlari.get(i)));
+	else
+		txt.setText(txt.getText() + "  -  " + Integer.toString(CekilisRakamlari.get(i)));
+	}
+	
+	txt.setText("�ansl� Numaralar .:  " + txt.getText());
+	 
+}
+
+
+	void Addickcolumns(int i)
+	{
+		 LinearLayout ln= (LinearLayout) findViewById(R.id.layoutPickcolumns);
+		 
+
+		 if (id_count-8880==49)
+			 return;
+			RelativeLayout rl=new RelativeLayout(this);
+			rl.setBackgroundColor(i);
+			 ln.addView(rl); 
+			 for (int j = 0; j < 9; j++) {
+				 TextView tv = new TextView(this);
+				 
+				 tv.setClickable(true);
+				 id_count =id_count+1;
+				 tv.setId(id_count);
+				 tv.setGravity( Gravity.CENTER);
+				 tv.setText(Integer.toString(id_count-8880));
+				 
+				 rl.addView(tv);
+				 RelativeLayout.LayoutParams llp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				 llp.setMargins(j*54, 3, 0, 0);
+			     tv.setLayoutParams(llp);
+			     
+			        
+					TextView t = (TextView)findViewById(tv.getId());
+					 t.setOnClickListener(new View.OnClickListener() {
+						    public void onClick(View v) {
+						    	if (seciliRakamlar.size()>5)
+						    	{
+						    		Toast.makeText(getApplicationContext(), "Bir kolon i�in en fazla 6 adet rakam se�ebilirsiniz", Toast.LENGTH_SHORT).show();
+						    	}
+						    	else
+						    	{
+						    		TextView tt= (TextView)v;
+						    		
+						    		Boolean rakamsecilmis=false;
+						    		for (int k = 0; k < seciliRakamlar.size(); k++) 
+						    		{
+										if (Integer.parseInt(tt.getText().toString())==seciliRakamlar.get(k))
+										{
+											rakamsecilmis=true;
+											Toast.makeText(getApplicationContext(), tt.getText()+  " numaras� zaten se�ilmi�.", Toast.LENGTH_SHORT).show();
+										}
+									}
+						    		
+						    		if (!rakamsecilmis)
+						    		{
+							    		tt.setBackgroundColor(Color.RED);
+								    	seciliRakamlar.add(Integer.parseInt(tt.getText().toString()));
+						    		}
+						    	}
+						    }
+						});
+					 
+					 if (id_count-8880==49)
+						 break;
+			}
+			 
+		
+	
+	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	
+			for (int i = 0; i < 9; i++) {
+				Addickcolumns(i);
+			}
+			
+			
+			// Secili kolonlari iptal eder.
+			Button btnIptal = (Button)findViewById(R.id.btnIptal);
+			btnIptal.setOnClickListener(new View.OnClickListener() 
+			{
+			public void onClick(View v) 
+			{
+				
+				
+				if (seciliRakamlar.size()>0)
+				{
+					secimTemizle();
+				Toast.makeText(getApplicationContext(), "Se�ilen rakamlar iptal edildi.", Toast.LENGTH_SHORT).show();
+				}
+				else
+				if (OyananKolonlar.size()>0)
+				{
+					int k =OyananKolonlar.size();
+					OyananKolonlar.remove(k-1);
+					secimTemizle();
+					secilikolonlarigoster();
+					
+					Toast.makeText(getApplicationContext(), Integer.toString(k) +  ". kolon iptal edildi.", Toast.LENGTH_SHORT).show();					
+				}
+			}
+			});
+			// Secili kolonlari iptal eder.
+			
+			// kolonda rakam secimini tamamlar. 
+			Button btnPlay = (Button)findViewById(R.id.btnkolonoyna);
+			btnPlay.setOnClickListener(new View.OnClickListener() 
+			{
+			public void onClick(View v) 
+			{
+				
+					if (seciliRakamlar.size()!=6)
+					{
+						Toast.makeText(getApplicationContext(), "Bir kolon oynamak i�in 6 adet rakam se�melisiniz.", Toast.LENGTH_SHORT).show();						
+					}
+					else if (OyananKolonlar.size()==8)
+					{ 
+						Toast.makeText(getApplicationContext(), "8 kolon oynayabilirsiniz sadece.", Toast.LENGTH_SHORT).show();
+					}
+					else 	
+					{
+						List<Integer> seciliRakamlartmp = new ArrayList<Integer>();
+						
+						for (int i = 1; i < seciliRakamlar.size()+1; i++) {
+							seciliRakamlartmp.add(seciliRakamlar.get(i-1));
+						}
+						OyananKolonlar.add(seciliRakamlartmp);
+	
+						secimTemizle();
+						
+						secilikolonlarigoster();
+					}
+			}
+			});
+			//kolonda rakam secimini tamamlar.
+			
+			
+			// Yeni haftacekilisi
+			Button btnyenihafta = (Button)findViewById(R.id.btnYenihafta);
+			btnyenihafta.setOnClickListener(new View.OnClickListener() 
+			{
+				public void onClick(View v) 
+				{
+					seciliRakamlar.clear();
+					OyananKolonlar.clear();
+					CekilisRakamlari.clear();
+				
+					TextView txt ;
+					txt =(TextView) findViewById(R.id.lblcekilisrakamlar);
+					txt.setText("");
+					secimTemizle();
+					secilikolonlarigoster();
+					
+					Toast.makeText(getApplicationContext(), "Kupon temizlendi.", Toast.LENGTH_SHORT).show();
+				}
+			});
+			// Yeni haftacekilisi
+			
+
+			// Cekilis Yap
+			Button btnsonuckontrol = (Button)findViewById(R.id.btnsonuckontrol);
+			btnsonuckontrol.setOnClickListener(new View.OnClickListener() 
+			{
+				public void onClick(View v) 
+				{
+					
+					if (OyananKolonlar.size()<1)
+			    		Toast.makeText(getApplicationContext(), "�ekili� i�in en az bir kolon oynamal�s�n�z.", Toast.LENGTH_SHORT).show();
+					else
+					{
+						if (CekilisRakamlari.size()==0)
+						{
+							CekilisRakamlariolustur();
+							cekilisRakamlariGoster();
+						}
+						
+						secilikolonlarigoster();
+						Toast.makeText(getApplicationContext(), "Bulunan rakamlar i�aretlendi.", Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
+			// Cekilis Yap
+			
+			secimTemizle();
+	}
+	
+	void SecilenNumaraCelikistemi(TextView v,int Number)
+	{
+		v.setBackgroundColor(Color.WHITE);
+		
+		for (int j = 0; j < CekilisRakamlari.size()-1; j++) 
+		{
+			if (Number==CekilisRakamlari.get(j))
+			{
+				v.setBackgroundColor(Color.RED);
+			}
+		}
+	}
+
+	
+	void secilikolonlarigoster()
+	{
+		TextView txt ;
+		txt =(TextView) findViewById(R.id.lblkolon1_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon1_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon1_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon1_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon1_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon1_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon2_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon2_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon2_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon2_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon2_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon2_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon3_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon3_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon3_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon3_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon3_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon3_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon4_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon4_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon4_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon4_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon4_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon4_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon5_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon5_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon5_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon5_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon5_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon5_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		
+		txt =(TextView) findViewById(R.id.lblkolon6_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon6_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon6_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon6_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon6_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon6_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		txt =(TextView) findViewById(R.id.lblkolon7_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon7_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon7_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon7_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon7_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon7_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		
+		txt =(TextView) findViewById(R.id.lblkolon8_rakam1);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon8_rakam2);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon8_rakam3);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon8_rakam4);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon8_rakam5);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		txt =(TextView) findViewById(R.id.lblkolon8_rakam6);
+		txt.setText("--");
+		txt.setBackgroundColor(Color.WHITE);
+		
+		for (int i = 0; i < OyananKolonlar.size(); i++) {
+			List<Integer> dt=OyananKolonlar.get(i);
+			if (i==0)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon1_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon1_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon1_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon1_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon1_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon1_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+				
+			}
+			
+			if (i==1)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon2_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon2_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon2_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon2_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon2_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon2_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+			}
+			
+			if (i==2)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon3_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon3_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon3_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon3_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon3_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon3_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+			}
+			
+			if (i==3)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon4_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon4_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon4_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon4_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon4_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon4_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+			}
+			
+			if (i==4)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon5_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon5_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon5_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon5_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon5_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon5_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+			}
+			if (i==5)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon6_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon6_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon6_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon6_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon6_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon6_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+			}
+			
+			if (i==6)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon7_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon7_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(1));
+				
+				txt =(TextView) findViewById(R.id.lblkolon7_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon7_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon7_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon7_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+			}
+			
+			if (i==7)
+			{
+				txt =(TextView) findViewById(R.id.lblkolon8_rakam1);
+				txt.setText(Integer.toString(dt.get(0)));
+				SecilenNumaraCelikistemi(txt,dt.get(0));
+				
+				txt =(TextView) findViewById(R.id.lblkolon8_rakam2);
+				txt.setText(Integer.toString(dt.get(1)));
+				SecilenNumaraCelikistemi(txt,dt.get(2));
+				
+				txt =(TextView) findViewById(R.id.lblkolon8_rakam3);
+				txt.setText(Integer.toString(dt.get(2)));
+				SecilenNumaraCelikistemi(txt,dt.get(3));
+				
+				txt =(TextView) findViewById(R.id.lblkolon8_rakam4);
+				txt.setText(Integer.toString(dt.get(3)));
+				SecilenNumaraCelikistemi(txt,dt.get(4));
+				
+				txt =(TextView) findViewById(R.id.lblkolon8_rakam5);
+				txt.setText(Integer.toString(dt.get(4)));
+				SecilenNumaraCelikistemi(txt,dt.get(5));
+				
+				txt =(TextView) findViewById(R.id.lblkolon8_rakam6);
+				txt.setText(Integer.toString(dt.get(5)));
+				SecilenNumaraCelikistemi(txt,dt.get(6));
+			}
+		}
+		
+		
+	}
+	
+	void secimTemizle()
+	{
+		
+		for (int i = 8881; i < 9000; i++) {
+	        TextView txt = (TextView) findViewById(i);
+
+	       if (txt!=null)
+	        txt.setBackgroundColor(Color.TRANSPARENT);
+		}
+	
+	seciliRakamlar.clear();
+	
+	Button btnPlay = (Button)findViewById(R.id.btnkolonoyna);
+	btnPlay.setText(Integer.toString( OyananKolonlar.size()+1) + ". Kolon Oyna");
+	
+	if (OyananKolonlar.size()==8)
+	{
+		btnPlay.setText("Kolon bitti.");
+	}
+	
+	}
+}
+
